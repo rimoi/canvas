@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mon projet canvas</title>
+        
+    </head>
+    <body>
+    	<h1>Bienvenue  dans mon canvas</h1>
+        <canvas id="mon_canvas" width="400" height="300" style ="border:1px solid black;">
+            Message pour les navigateurs ne supportant pas encore canvas.
+        </canvas>
+        <script type="text/javascript">
+					window.onload = function()
+					{
+										       		var canvas = document.getElementById('mon_canvas');
+										            if(!canvas)
+										            {
+										                alert("Impossible de récupérer le canvas");
+										                return;
+										            }
+										         	var context = canvas.getContext('2d');
+										            if(!context)
+										            {
+										                 alert("Impossible de récupérer le context du canvas");
+										                 return;
+										            }
+									                
+									             // on définie quelque variable
+									                var diametreBalle = 20;
+									                // définition de notre fonction
+									                var xPos = 1+diametreBalle/2;
+									                var yPos = 1+diametreBalle/2;
+									                var vitesseX =3;
+									                var vitesseY =3;
+									                var myInterval = setInterval(animate,1000/30);
+
+									                function animate(){
+									                    // Traçage de la bale
+									                    context.clearRect(0,0,canvas.width,canvas.height);
+									                    context.beginPath();
+									                    context.arc(xPos, yPos, diametreBalle/2,0, Math.PI*2);
+									                    context.fill();
+									                    context.closePath();
+
+									                    if(xPos+diametreBalle/2 >= canvas.width || xPos <= 0+diametreBalle/2)
+									                    {
+									                        vitesseX *=-1;
+									                    }
+									                   
+									                    if(yPos+diametreBalle/2 >= canvas.height || yPos <= 0+diametreBalle/2) 
+									                    {
+									                        vitesseY *=-1;
+									                    }
+									                    xPos += vitesseX;
+									                    yPos += vitesseY;
+									                }
+											
+					        
+					       
+
+
+					    
+					}
+				
+
+        </script>
+    </body>
+</html>
